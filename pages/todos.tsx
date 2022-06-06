@@ -5,7 +5,7 @@ function Todos() {
   const [state, send] = useMachine(todoMachine, {
     services: {
       loadTodos: async () => {
-        // throw new Error("oh no!!!!!!!!!!!!");
+        throw new Error("oh no!!!!!!!!!!!!");
         return ["take bins out", "do laundry"];
       },
     },
