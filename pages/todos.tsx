@@ -5,7 +5,7 @@ function Todos() {
   const [state, send] = useMachine(todoMachine, {
     services: {
       loadTodos: async () => {
-        throw new Error("oh no");
+        // throw new Error("oh no!!!!!!!!!!!!");
         return ["take bins out", "do laundry"];
       },
     },
@@ -14,9 +14,8 @@ function Todos() {
   return (
     <div className="">
       <h1>Test 1</h1>
-      <h2>{JSON.stringify(state.value)}</h2>
-      <button onClick={() => send({ type: "todos loaded", todos: ["take bins out"] })}>Load todo</button>
-      <button onClick={() => send({ type: "todos failed", errorMessage: "oh no!" })}>Loading todo failed</button>
+      <pre>{JSON.stringify(state.value)}</pre>
+      <pre>{JSON.stringify(state.context)}</pre>
     </div>
   );
 }
