@@ -2,22 +2,20 @@
 
 export interface Typegen0 {
   "@@xstate/typegen": true;
-  eventsCausingActions: {};
+  eventsCausingActions: {
+    alertTodoLoaded: "todos loaded";
+  };
   internalEvents: {
     "xstate.init": { type: "xstate.init" };
   };
-  invokeSrcNameMap: {
-    loadTodos: "done.invoke.Hover Machine.Loading Todos:invocation[0]";
-  };
+  invokeSrcNameMap: {};
   missingImplementations: {
     actions: never;
-    services: "loadTodos";
+    services: never;
     guards: never;
     delays: never;
   };
-  eventsCausingServices: {
-    loadTodos: "xstate.init";
-  };
+  eventsCausingServices: {};
   eventsCausingGuards: {};
   eventsCausingDelays: {};
   matchesStates: "Loading Todos" | "Todos Loaded" | "Loading Todos Errored";
