@@ -2,7 +2,7 @@ import { type } from "os";
 import { createMachine } from "xstate";
 
 export const todoMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QAkD2A3MAnABAWQEMBjACwEsA7MAOgBlUCJKocAVVCVWAYgBcOuOADYMIkRKAAOXMrzKoKEkAA9EAJgAMAFmoBmLQA4NATi261WrRoDsARgBsAGhABPRAFpbx+9QCsx3WMNe11fc18HawBfKOc0TFxCUkoaekZmNgEeEXSKFn5OHAAzAjIhcSQQaVhZeUVK1QR3XW0-a18NA1trAI1bMydXD27rahNdA0mDANtzUxjYkAoOOCV47Hxicio6UQz2TnhK6tqFJUb3f2pjCODTa31TX2tnNybbA10-AKDrNV8QvZbGpdDE4hgNkltjQDoI0mIIEoTnIzg1EF4dKYPvYZtpAjZXupRtZplp2sZPu17M8tGCQOtElsUrtcixYbAcABRLBYVBYCpSGQo+qgC66CbUYHGdoOGy2D4WQkINTE0nkykAml0hmbZJUJFCurnDy6exqSVqaURexyhVaJXuNQ4774szeCJaNQLKJAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QAkD2A3MAnABAWQEMBjACwEsA7MAOgBlUCJKocAVVCVWAYgBcOuOADYMIkRKAAOXMrzKoKEkAA9EAJgAMAFmoBmLQA4NATi261WrRoDsARgBsAGhABPRAFpbx+9QCsx3WMNe11fc18HawBfKOc0TFxCUkoaekZmNgEeEXSKFn5OHAAzAjIhcSQQaVhZeUVK1QR3XW0-a2NrLWNfDV0HL2c3Jq8ff0CNXwM1e0MjXRjYkAoOOCV47Hxicio6UQz2TnhK6tqFJUb3f2pu22DTa31TX2tBj1sDXT8AoOs1XxD7LY1PNFutElsUtQDoI0mIIEoTnIzg1EFo1NR7JiTLp9LprAYDPY1K8mr50V47F4OgDbFpbDE4hgNkltqk9nlMoccABRLBYVBYCpSGRI+qgC5U663LwmDTYixOVweMnUCm2KnWGl0hkgMGbZJUBEiurnDzmAxtDpdHp9QHGEnuabGL66AktOlqdXGBZRIA */
   createMachine(
     {
       tsTypes: {} as import("./todoMachine.typegen").Typegen0,
@@ -13,7 +13,7 @@ export const todoMachine =
               todos: string[];
             }
           | {
-              type: "todos failed";
+              type: "loading todo failed";
               errorMessage: string;
             },
       },
@@ -27,6 +27,7 @@ export const todoMachine =
               target: "Todos Loaded",
             },
             "loading todo failed": {
+              actions: "alertTodoFailed",
               target: "Loading Todos Errored",
             },
           },
@@ -38,7 +39,10 @@ export const todoMachine =
     {
       actions: {
         alertTodoLoaded: (context, event) => {
-          type;
+          alert(JSON.stringify(event.todos));
+        },
+        alertTodoFailed: (context, event) => {
+          alert(JSON.stringify(event.errorMessage));
         },
       },
     }

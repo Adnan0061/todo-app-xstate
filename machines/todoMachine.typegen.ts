@@ -4,6 +4,7 @@ export interface Typegen0 {
   "@@xstate/typegen": true;
   eventsCausingActions: {
     alertTodoLoaded: "todos loaded";
+    alertTodoFailed: "loading todo failed";
   };
   internalEvents: {
     "xstate.init": { type: "xstate.init" };
