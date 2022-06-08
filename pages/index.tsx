@@ -7,10 +7,10 @@ const Home: NextPage = () => {
   const [state, send] = useMachine(myMachine);
   const router = useRouter();
   return (
-    <>
-      <button onClick={() => router.push("/hover")}>hovers test</button>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", gap: "15px" }}>
       <button onClick={() => router.push("/todos")}>todos test</button>
-    </>
+      <button onClick={() => router.push("/hover")}>hovers test</button>
+    </div>
   );
 };
 

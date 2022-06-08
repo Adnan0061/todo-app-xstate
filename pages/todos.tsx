@@ -30,7 +30,7 @@ function Todos() {
         <ul>
           {state.context.todos.map((item, index) => (
             <div key={index} style={{ display: "flex", margin: "5px" }}>
-              <li style={{ display: "block" }}>
+              <li style={{ display: "block", margin: "0 10px 0 0" }}>
                 {index + 1}. {item}
               </li>
               <button onClick={() => send({ type: "Delete", todo: item })}>Delete todo</button>
