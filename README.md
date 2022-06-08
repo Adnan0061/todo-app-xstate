@@ -1,3 +1,3 @@
-### xstate practice
+## xstate practice
 
 ![todo machine](./public/xstate.jpg)
