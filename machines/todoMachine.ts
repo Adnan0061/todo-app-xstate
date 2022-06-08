@@ -2,7 +2,7 @@ import { actions, assign, createMachine } from "xstate";
 import Todos from "../pages/todos";
 
 export const todoMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALqJQAB1nFV6-SAAeiAEwB2ABwUtAVnsA2V7YDMWt1t-OADQgAJ6IALQAjG7WFPb2WgAstm72AJxukdYAvtnBQjgEJJwS9KSMQmxgAE7VqNUUBgA2KgBm9QC2FAUixeK0ZRUycgpKppq65kawJmqk5lYI4daRaRTOXgkxtmnWWl5pwWEIXl4Uqc7WPmmRWjfOzpG5+TKFopyVmKWQrADC1WAVGBMOQAO5TYzjBaILyRRIURIZaLWZyJNxpLQ7IKhRAbCiReyXaIY+xeRKwtLPEA9IpibrDL4DH4AETATTAyjAEJmUKQllxOwRKw2kQcPmsbjcRwicLOmySOySd2saXsVJp70o-0BqnKILAoMwyhkFAAyoRUKCpO1qh1MGQDABXZSsABinXtpCdykwRFw5Ug3NmZj5izctnW3nsiTRNzStgJkWlCHRZ2c-iu9lsMY2GXVr16dO1KikYKNJvNlutHodztYpsdACMOiYg7zQItTlp8YlLlprNYYxkMtjjo8zrYB4jopP++j8xg3n0KMXdYwy8aMGbcNwpJvUOx1JQFAJ6YvC5xV6WDeWt6ad3uZPJSLwxnNtHo+dNg-NQ7ikhQaTOLYDwxrY+zuF4Uo4iccJOKiiTuP4qQDr4C7CLSl4AiWeobhWD56vurA1HUDTNG0nRnhhmortha76oa+7bruhFPqMJbqB+bZzNCJybBQUGws4Nz2NEtyjogqbrBmmzZr2BxuOhS50qy7KcreB4cMeL78IIBaYZQqkcsC+7Pq+HETJ+hiQjxf4IMJThuDGkpeOBLiRF4ElLEJTgzhKpJZjsTx5NS+k0UZ6lESR9SNC0yg2l0GrLhFJlsTpb6cZMX42SGHaIDsjjbOimISmkvb2Mm4SnPCjzhmSpVaB5aEhUlKlshyj6LtFAIQKwFiwMoQIULgrSctUAAUKL+AAlKwrWcBFnVYN1gbZTytl5SmDzSZiBIrL2iJedEjgKpEqJaIS2apF4uQhaQ6BwOY839JIeqVNxuX8gg5L4k5MaBVc8auMmKz4oSA6ksBwFJGqLVhcunzfBAH2-ptGxnMkZ1eHs2a3DsyZouc4NXA8VweOSSkXi9gzSCwmAAKK1PUq3Wetn2LMsMbrPEviNfViLWCDBznJOwoC416TOJTBm0Tq16MRWFpWnqCWet6KO8eicQ+Bd5MJLYOzQWOmIUAOg5xokjXWPYORw+eMtXrhN5MfeLGMPuGt2YhzjnC4aSqpcqqJKKBOiRQovJFmRJW9LNGO+uzsyJ7m0-cBmzOXGCaiYkBMXeHU6bFc7mZIpdvUcl7WRUna0-rxjyOIhluim4PjotblVkhGjV1YJnmuGdscV2pS2YCtyM1+2X0GxGluJFcCYxJEtxJjBgMi6h0YgdDmKD2IydfcsqTc1sfNzwLlVz923feBKLfW+BN23UAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBUD2FUAICyBDAxgBYCWAdmAHQAyquEZUmaGsAxBuRWQG6oDWlZljxEylGnQZN0qWAh6p8uAC7FUpANoAGALqJQAB1nFV6-SAAeiAIxaAnBQBMANgAc9144DMzu3YAsLgA0IACeiAC0-vYUAKxesQDsiY6JWsmx-s5eAL45IUI4BCScEvSkjEJsYABONag1FAYANioAZg0AthSFIiXitOWVMnIKSqaauuZGsCZqpOZWCBGxrokUds5a21qO9taOayHhyy7Occ6Jrq5e1gn+yWt5BTJFopxVmGWQrADCNWAVGBMOQAO7TYwTRaILyuawUfyeRyxLRrQ6OaxJY6RWyxCjOfzRNaxWLWLJXOzPEC9YpiHojL6DH4AETAzTAymB6jAENmUKQlkQSX8cWiBLuWlh-lJ2OWgS8+K89i8AVczgx1ipNPeA0kFWkLEwAFE6g0fhZYMogRRcG1OTUABR7bYASlY2v61EGUk+JvqAIgvLmZgFSyi6oRSq01jSSrc6VlETJjgoKV2rn8dm8t2cWtefTp-0Bqn1YMwyhkFAAyoRUKCpB0ap1MGQDABXZSsABiXRbpHbykwRFwFUgQf5oCWyVTMYC-hVXnnaq8ssX8LcKpRPlRqrzGDenqLKikZYrGGrtfr+sbzdbHdYVbbACNOiZx-NoQhF1onK47ErrACAkfAeWVrGceE7C0dVJUOG5PHSPdhFpTgjxLRhT0rKtcG4KQz1QdhuS4UheAEel9wLVCAWPUswFBcssJwvCZHkEjFGPdRtD0AUZmDBZQyFTEKFscDYQxZEyVcRNF1TZJkWiKD5wXWIkIPQtqPQkE6IY89sNw-V8NYWp-SaVplBvcjkJ1Cg0JPbT8OrJiDJYsYOMmbjDEhD8BK-RE4nSZFrhudJEhXMIYX8dcbjsLctj-RFVMoyhbNo+jDIAcSwCtMFrToeR4ryQ0nSJDjxPxMz8WI7DVVJJUTTIKFRexoMA5JLiSFT8mpfMUMoVl2U0hyazrZj92aYhLVYfqOXyzy+W84qEESITEWlNIUUcQJ4kTOERUROTokyDNEk6l4KN6ihpsGysruBQyOEoBQyI9OkrtG1BLrZGadNQVjeHGeYuPfIrBQQXwnFReJVS0QIIMSRMCQcVISWqmMvHR-9Eout7nPPW6fqM01GhadoukstTOBxxgHPx-C-vYiYgYK+aQaWdqEUlLxHE2vwthOxN5UVZVVXVaxNS6l7Ka+66MFYTKGJy1A8uB-jFoiUqNgCaqYd8LZwMTRJ50VcD1qyE3XCx6yqZ+zBjLNCBWAtK1ORtO1aidHY3Ulvrpfe22ibHZm+M-NxXGEolANiNx4lCxNAJFQ5F2JarnFJcWutIdA4HMb2vT1YYWBVz8Ii5vFkUN64CSyLNE1SBxoKuVwo6C7nKQlnrrM+b5AyDidQcyBUIKj24MmFeHwuWJU8TuWwCRuA5EgCS3PTKH0GT9e2i58iIIIVbY-DsE7SXRv8EZ-VYdybgfDci-xl-U4s7LSrDLwbXs72ULfFsXjZDesGrMyZAeOPE4mI8Rij2AkKOiIT73yoo-VKP1HL6WpjIL+oNAGphRB4bwEom5gUcA4KCEEoI+AzNAuByUNJPx+ugpY8QZyL0JAuJc2RZRRw2C1TYJI4RKmuJQz6A13oXhGrjLA41LR0MQNEFMaQ7D-2HtGTEIDIgIQ2GsUKm0kj-2RAI62NNpZ3TQb3BaoNU4ikyOtewwpURhRODvOETgj5a1Cv-GGejfZiKkV+K4qZ9hN2yEorEE8Ih-gVNVZII9Yy7nbudK2njUH7jtgGbxVx1hHXRm4bISRfBxwOOHaIi8oLuENqFSh3id5eHWPvPwR87iwjsImTY5wImuNsXzRweQ8hAA */
   createMachine(
     {
       context: {
@@ -23,7 +23,14 @@ export const todoMachine =
             data: void;
           };
         },
-        events: {} as { type: "Create new" } | { type: "Delete"; todo: string } | { type: "Form input changed"; value: string } | { type: "Submit" } | { type: "Clear input form" },
+        events: {} as
+          | { type: "Create new" }
+          | { type: "Delete one" }
+          | { type: "Delete"; todo: string }
+          | { type: "Form input changed"; value: string }
+          | { type: "Submit" }
+          | { type: "Clear input form" }
+          | { type: "Go to home" },
       },
       id: "Todo Machine",
       initial: "Loading Todos",
@@ -34,7 +41,12 @@ export const todoMachine =
             onDone: [
               {
                 actions: "assignTodosToContext",
+                cond: "Has todos",
                 target: "Todos Loaded",
+              },
+              {
+                actions: "assignTodosToContext",
+                target: "Creating new todo",
               },
             ],
             onError: [
@@ -50,12 +62,18 @@ export const todoMachine =
             "Create new": {
               target: "Creating new todo",
             },
-            Delete: {
-              target: "Delete todo",
+            "Delete one": {
+              target: "Deleting todo",
             },
           },
         },
-        "Loading Todos Errored": {},
+        "Loading Todos Errored": {
+          after: {
+            "2000": {
+              target: "Loading Todos",
+            },
+          },
+        },
         "Creating new todo": {
           initial: "Showing form input",
           states: {
@@ -87,26 +105,47 @@ export const todoMachine =
               },
             },
           },
+          on: {
+            "Go to home": {
+              target: "Loading Todos",
+            },
+          },
         },
-        "Delete todo": {
-          invoke: {
-            src: "deleteTodo",
-            onDone: [
-              {
-                target: "Loading Todos",
+        "Deleting todo": {
+          initial: "Showing todo list",
+          states: {
+            "Showing todo list": {
+              on: {
+                Delete: {
+                  target: "Delete todo",
+                },
               },
-            ],
-            onError: [
-              {
-                actions: "assignErrorToContext",
-                target: "Deleting todo errored",
+            },
+            "Delete todo": {
+              invoke: {
+                src: "deleteTodo",
+                onDone: [
+                  {
+                    target: "#Todo Machine.Loading Todos",
+                  },
+                ],
+                onError: [
+                  {
+                    target: "#Todo Machine.Deleting todo errored",
+                  },
+                ],
               },
-            ],
+            },
+          },
+          on: {
+            "Go to home": {
+              target: "Loading Todos",
+            },
           },
         },
         "Deleting todo errored": {
           after: {
-            "2500": {
+            "2000": {
               target: "Todos Loaded",
             },
           },
@@ -114,6 +153,11 @@ export const todoMachine =
       },
     },
     {
+      guards: {
+        "Has todos": (context, event) => {
+          return event.data.length > 0;
+        },
+      },
       actions: {
         assignTodosToContext: assign((context, event) => {
           return {
